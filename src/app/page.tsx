@@ -1,11 +1,16 @@
-import Editor from "./components/Editor";
+"use client";
+
+import { useState } from "react";
+import MyEditor from "./components/MyEditor";
 import Visualization from "./components/Visualization";
 
 export default function Home() {
+  const [codeSnippet, setCodeSnippet] = useState<string>("");
+
   return (
-    <div className="flex flex-col min-h-screen">
-      <Editor />
+    <>
+      <MyEditor codeSnippet={codeSnippet} setCodeSnippet={setCodeSnippet} />
       <Visualization />
-    </div>
+    </>
   );
 }
