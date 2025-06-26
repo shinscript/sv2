@@ -4,29 +4,28 @@ import Editor from "@monaco-editor/react";
 import useStore from "@/stores/stores";
 
 const CodeEditor: React.FC = () => {
-  const { codeSnippet, setCodeSnippet, setOutput } = useStore();
+  const { codeSnippet, setCodeSnippet, setTemporaryErrorOutput } = useStore();
   return (
-    <div className="row-span-3 w-full border-2 border-gray-300">
+    <div className="col-start-1 row-start-1 row-end-3 w-full border-2 border-gray-300">
       <Editor
         defaultLanguage="javascript"
         defaultValue="// Write your code here..."
-        height="100%"
         theme="vs-dark"
         language="javascript"
         options={{
           minimap: { enabled: false },
           automaticLayout: true,
           scrollBeyondLastLine: false,
+          colorDecorators: true,
         }}
         value={codeSnippet}
         onChange={(value) => setCodeSnippet(`${value}`)}
         onValidate={(markers) => {
-          console.log("VALIDATE MARKERS:", markers);
           if (markers.length > 0 && markers[0].severity === 8) {
-            const errorMessages = markers
-              .map((marker) => marker.message)
-              .join("\n");
-            setOutput(`Errors:\n${errorMessages}`);
+            const errorMessage = markers[0].message;
+            setTemporaryErrorOutput(`Error: ${errorMessage}`); // Set error output if validation fails
+          } else {
+            setTemporaryErrorOutput(""); // Clear output if no errors
           }
         }}
       />

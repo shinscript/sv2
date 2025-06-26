@@ -14,7 +14,7 @@ export default function Home() {
       <div className="grid justify-center p-4">
         <ButtonWrapper />
       </div>
-      <div className="grid grid-cols-2 grid-rows-3 gap-4 p-10 mt- mr-100 ml-100 border-2 border-gray-300 rounded-lg justify-items-center">
+      <div className="grid grid-cols-2 gap-4 p-5 mr-100 ml-100 h-100vh border-2 border-gray-300 rounded-lg justify-items-center text-align-center">
         <CodeEditor />
         <Memory />
         <CallStack />
