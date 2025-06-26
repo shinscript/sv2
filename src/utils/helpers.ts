@@ -23,6 +23,7 @@ export const parseAstToDispersedCodeSnippet = (ast: Program) => {
     switch (type) {
       case "VariableDeclaration": {
         if (node.declarations && node.declarations.length > 0) {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           node.declarations.forEach((declaration: any) => {
             if (
               declaration.init.type === "ArrowFunctionExpression" ||
