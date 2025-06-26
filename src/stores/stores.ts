@@ -1,8 +1,6 @@
 import { create } from "zustand";
 import { IStoreProps, IStoreActions, IDispersedCodeSnippet } from "../types";
-import * as parser from "acorn";
-
-const { parse } = parser.Parser;
+import { parseCode } from "@/utils/helpers";
 
 const defaultDispersedCodeSnippet: IDispersedCodeSnippet = {
   variableDeclaration: [],
@@ -13,6 +11,7 @@ const defaultDispersedCodeSnippet: IDispersedCodeSnippet = {
 };
 
 const useStore = create<IStoreProps & IStoreActions>((set) => ({
+  // Initial state
   codeSnippet: "",
   output: "",
   dispersedCodeSnippet: {
@@ -22,33 +21,34 @@ const useStore = create<IStoreProps & IStoreActions>((set) => ({
     identifiers: [],
     expressions: [],
   },
+  temporaryErrorOutput: "",
+
+  // Actions
   setCodeSnippet: (codeSnippet) => set({ codeSnippet }),
   setOutput: (output) => set({ output }),
   setDispersedCodeSnippet: (dispersedCodeSnippet) =>
     set({ dispersedCodeSnippet }),
-  run: async () => {
-    const { codeSnippet, setOutput } = useStore.getState();
+  run: () => {
+    const {
+      codeSnippet,
+      setOutput,
+      setDispersedCodeSnippet,
+      temporaryErrorOutput,
+    } = useStore.getState();
 
-    if (!codeSnippet) {
-      setOutput("No code snippet provided");
+    if (temporaryErrorOutput.length) {
+      setOutput(temporaryErrorOutput);
       return;
     }
 
-    try {
-      const ast = await parse(codeSnippet, {
-        ecmaVersion: "latest",
-        sourceType: "module",
-        locations: true,
-        ranges: true,
-      });
+    const ast = parseCode(codeSnippet);
 
-      console.log("AST:", ast);
-    } catch (error) {
-      // @eslint-disable-next-line no-error
-      setOutput(
-        `Error: ${error instanceof Error ? error.message : "Unknown error"}`
-      );
+    if (!ast) {
+      setOutput("Error parsing code.");
+      return;
     }
+
+    console.log("AST:", ast);
   },
   clear: () =>
     set({

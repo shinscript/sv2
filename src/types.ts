@@ -18,6 +18,7 @@ export interface IStoreProps {
   codeSnippet: string;
   output: string;
   dispersedCodeSnippet: IDispersedCodeSnippet;
+  temporaryErrorOutput: string;
 }
 
 export interface IStoreActions {
@@ -26,6 +27,6 @@ export interface IStoreActions {
   setDispersedCodeSnippet: (
     dispersedCodeSnippet: IDispersedCodeSnippet
   ) => void;
-  run: () => Promise<void>;
+  run: () => void;
   clear: () => void;
 }
