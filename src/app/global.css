@@ -1,1 +1,49 @@
 @import "tailwindcss";
+
+/*
+| Element                | Description                        | Hex Code  |
+| ---------------------- | ---------------------------------- | --------- |
+| **Background**         | Main page background               | `#0F172A` |
+| **Card Backgrounds**   | Panels like Call Stack, Memory     | `#1E293B` |
+| **Border / Divider**   | Box outlines or dividers           | `#334155` |
+| **Primary Text**       | Headers / strong labels            | `#F1F5F9` |
+| **Secondary Text**     | Variable values / non-bold text    | `#CBD5E1` |
+| **Code Text**          | Code editor text                   | `#E2E8F0` |
+| **Button Background**  | “Run” button                       | `#3B82F6` |
+| **Button Text**        | Text on button                     | `#FFFFFF` |
+| **Highlight (Active)** | Stack frame focus / variable value | `#64748B` |
+| **Highlight Text**     | Text on highlighted elements       | `#F8FAFC` |
+*/
+
+/*
+| Usage         | Font Suggestion                                                     | Notes                                       |
+| ------------- | ------------------------------------------------------------------- | ------------------------------------------- |
+| **UI Text**   | `Inter` or `Segoe UI`                                               | Clean, legible, great for headings & labels |
+| **Code Text** | `'Fira Code'`, `'JetBrains Mono'`, `'Source Code Pro'`, `monospace` | Monospaced font for code blocks             |
+| **Body Text** | `Arial`, `Helvetica`, `sans-serif`                                  | Simple, widely supported sans-serif font    |
+*/
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0f172a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Inter", "Segoe UI", "Helvetica Neue", "Arial", sans-serif;
+}
