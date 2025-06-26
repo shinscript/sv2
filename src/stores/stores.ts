@@ -37,7 +37,7 @@ const useStore = create<IStoreProps & IStoreActions>((set) => ({
       return;
     }
 
-    const fulfilled = parseAstToDispersedCodeSnippet(ast, codeSnippet);
+    const fulfilled = parseAstToDispersedCodeSnippet(ast);
     const evaluatedCode = eval(codeSnippet);
 
     set({

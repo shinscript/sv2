@@ -12,7 +12,7 @@ export const parseCode = (code: string): Program => {
   });
 };
 
-export const parseAstToDispersedCodeSnippet = (ast: Program, code: string) => {
+export const parseAstToDispersedCodeSnippet = (ast: Program) => {
   const dispersedCodeSnippet: IDispersedCodeSnippet = {
     memoryLines: [],
     callstackLines: [],
