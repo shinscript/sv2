@@ -1,6 +1,10 @@
 import { create } from "zustand";
-import { IStoreProps, IStoreActions, IDispersedCodeSnippet } from "../types";
-import { parseAstToDispersedCodeSnippet, parseCode } from "@/utils/helpers";
+import {
+  IStoreProps,
+  IStoreActions,
+  IDispersedCodeSnippet,
+} from "../utils/types";
+import { parseAstToDispersedCodeSnippet, parseCode } from "../utils/helpers";
 
 const defaultDispersedCodeSnippet: IDispersedCodeSnippet = {
   memoryLines: [],

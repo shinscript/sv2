@@ -1,4 +1,4 @@
-import { IDispersedCodeSnippet } from "@/types";
+import { IDispersedCodeSnippet } from "@/utils/types";
 // import  from "acorn";
 import { parse, Program } from "acorn";
 import * as walk from "acorn-walk";
