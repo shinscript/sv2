@@ -1,38 +1,20 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Editor, { useMonaco } from "@monaco-editor/react";
+import Editor from "@monaco-editor/react";
+import useStore from "@/stores/stores";
 
 const CodeEditor: React.FC = () => {
-  const [codeSnippet, setCodeSnippet] = useState<string>("");
-  const monaco = useMonaco();
-
-  // Define a custom theme for the Monaco editor
-  useEffect(() => {
-    if (monaco) {
-      monaco.editor.defineTheme("custom", {
-        base: "vs-dark",
-        inherit: true,
-        rules: [],
-        colors: {
-          "editor.background": "#1f2937",
-        },
-      });
-      monaco.editor.setTheme("custom");
-    }
-  }, [monaco]);
-
+  const { codeSnippet, setCodeSnippet } = useStore();
   return (
     <div className="row-span-3 w-full border-2 border-gray-300">
       <Editor
         defaultLanguage="javascript"
         defaultValue="// Write your code here..."
-        theme="custom"
+        height="100%"
+        theme="vs-dark"
         language="javascript"
         options={{
-          fontSize: 16,
           minimap: { enabled: false },
-          lineNumbers: "on",
           automaticLayout: true,
           scrollBeyondLastLine: false,
         }}
