@@ -1,6 +1,3 @@
-// create testing suite for Output component using jest and react testing library
-// Ensure that the component renders correctly and displays the output.
-
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import useStore from "../../stores/stores";

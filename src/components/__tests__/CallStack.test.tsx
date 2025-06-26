@@ -1,4 +1,3 @@
-//CallStack.test.tsx
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import CallStack from "../CallStack";
